@@ -2,7 +2,17 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1a1a2e;
+  --primary: #6c5ce7;
+  --primary-light: #a29bfe;
+  --accent: #00b894;
+  --accent-light: #55efc4;
+  --warning: #fdcb6e;
+  --danger: #e17055;
+  --card-bg: #f8f9ff;
+  --card-border: #e8e8f0;
+  --code-bg: #2d3436;
+  --section-alt: #f0f0ff;
 }
 
 @theme inline {
@@ -12,15 +22,200 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary-light);
+  border-radius: 4px;
+}
+
+/* Code block styling */
+.code-block {
+  background: var(--code-bg);
+  color: #dfe6e9;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  overflow-x: auto;
+  position: relative;
+}
+
+.code-block .comment {
+  color: #636e72;
+}
+
+.code-block .command {
+  color: #55efc4;
+}
+
+.code-block .flag {
+  color: #fdcb6e;
+}
+
+/* Card animations */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(108, 92, 231, 0.15);
+}
+
+/* OS Tab styling */
+.os-tab {
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+.os-tab.active {
+  border-color: var(--primary);
+  background: linear-gradient(135deg, #f0edff 0%, #e8f4fd 100%);
+  color: var(--primary);
+  font-weight: 600;
+}
+.os-tab:hover:not(.active) {
+  background: #f5f5ff;
+}
+
+/* Step number */
+.step-number {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #6c5ce7 0%, #00b894 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Warning/Error box */
+.warning-box {
+  background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+  border-left: 4px solid #fdcb6e;
+  border-radius: 0 12px 12px 0;
+  padding: 1rem 1.25rem;
+}
+
+.error-box {
+  background: linear-gradient(135deg, #fff0ee 0%, #fde8e5 100%);
+  border-left: 4px solid #e17055;
+  border-radius: 0 12px 12px 0;
+  padding: 1rem 1.25rem;
+}
+
+.success-box {
+  background: linear-gradient(135deg, #e8fff5 0%, #d4f5e9 100%);
+  border-left: 4px solid #00b894;
+  border-radius: 0 12px 12px 0;
+  padding: 1rem 1.25rem;
+}
+
+.tip-box {
+  background: linear-gradient(135deg, #f0edff 0%, #e8e5ff 100%);
+  border-left: 4px solid #6c5ce7;
+  border-radius: 0 12px 12px 0;
+  padding: 1rem 1.25rem;
+}
+
+/* Hero gradient */
+.hero-gradient {
+  background: linear-gradient(135deg, #f8f7ff 0%, #e8f4fd 50%, #e8fff5 100%);
+}
+
+/* Nav active */
+.nav-link {
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+  padding-left: 12px;
+}
+.nav-link.active {
+  border-left-color: var(--primary);
+  color: var(--primary);
+  font-weight: 600;
+  background: #f5f3ff;
+}
+.nav-link:hover:not(.active) {
+  border-left-color: var(--primary-light);
+  color: var(--primary);
+}
+
+/* Copy button */
+.copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #dfe6e9;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.copy-btn:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* Accordion */
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.accordion-content.open {
+  max-height: 2000px;
+}
+
+/* FAQ */
+.faq-item {
+  border: 1px solid var(--card-border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.2s;
+}
+.faq-item:hover {
+  border-color: var(--primary-light);
+}
+
+/* Mobile nav toggle */
+@media (max-width: 1024px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    position: fixed;
+    z-index: 50;
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
 }
